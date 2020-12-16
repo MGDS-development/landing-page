@@ -1,38 +1,44 @@
-/* eslint-disable no-script-url */
-var gulp = require('gulp');
-var browser = require('browser-sync');
-var requireDir = require('require-dir');
-var forwardReference = require('undertaker-forward-reference');
-var port = process.env.SERVER_PORT || 3000;
+let gulp          = require('gulp');
+let browserSync   = require('browser-sync').create();
+let $             = require('gulp-load-plugins')();
+let autoprefixer  = require('autoprefixer');
+let template = require('gulp-template-html');
 
-// Make Gulp accepting reference to tasks that are not declared yet, like in v3.
-gulp.registry(forwardReference());
+let sassPaths = [
+  'node_modules/foundation-sites/scss',
+  'node_modules/motion-ui/src'
+];
 
-requireDir('./gulp/tasks');
+function sass() {
+  return gulp.src('scss/app.scss')
+    .pipe($.sass({
+      includePaths: sassPaths,
+      outputStyle: 'compressed' // if css compressed **file size**
+    })
+      .on('error', $.sass.logError))
+    .pipe($.postcss([
+      autoprefixer()
+    ]))
+    .pipe(gulp.dest('./dist/css'))
+    .pipe(browserSync.stream());
+};
 
-function browserReloadSync(done) {
-  browser.reload();
-  done();
+function serve() {
+  browserSync.init({
+    server: "./dist/"
+  });
+
+  gulp.watch("scss/*.scss", sass);
+  gulp.watch("*.html").on('change', browserSync.reload);
 }
 
-// Builds the documentation and framework files
-gulp.task('build', gulp.series('clean', 'copy', 'sass', 'javascript', 'lint:graceful', 'docs:all'));
+function html(){
+	    return gulp.src('content/*.html')
+      .pipe(template('templates/template.html'))
+      .pipe(gulp.dest('dist'));
+}
 
-// Starts a BrowerSync instance
-gulp.task('serve', gulp.series('build', function(done){
-  browser.init({server: './_build', port: port});
-  done();
-}));
-
-// Watch files for changes
-gulp.task('watch', function() {
-  gulp.watch('docs/**/*', gulp.series('docs', browserReloadSync));
-  gulp.watch(['docs/layout/*.html', 'docs/partials/*{html,hbs}', 'docs/assets/partials/*{html,hbs}', 'node_modules/foundation-docs/templates/*{html,hbs}'], gulp.series('docs:all', browserReloadSync));
-  gulp.watch('scss/**/*', gulp.series('sass', browserReloadSync));
-  gulp.watch(['docs/assets/scss/**/*', 'node_modules/foundation-docs/scss/**/*'], gulp.series('sass:docs', browserReloadSync));
-  gulp.watch('js/**/*', gulp.series('javascript:foundation', browserReloadSync));
-  gulp.watch(['docs/assets/js/**/*', 'node_modules/foundation-docs/js/**/*'], gulp.series('javascript:docs', browserReloadSync));
-});
-
-// Runs all of the above tasks and then waits for files to change
-gulp.task('default', gulp.series('serve', 'watch'));
+gulp.task('sass', sass);
+gulp.task('html', html);
+gulp.task('serve', gulp.series('sass', 'html', serve));
+gulp.task('default', gulp.series('sass', 'html'));
