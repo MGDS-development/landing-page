@@ -1,4 +1,4 @@
-# oSoC-es website
+# MGDS landing page
 
 Website for open Summer of Code
 
