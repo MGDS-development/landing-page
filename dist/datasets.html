@@ -136,9 +136,10 @@ footer{
 			  <thead>
 				<tr>
 				  <th data-field="name" data-sortable="true">Name</th>
-				  <th data-field="publisher" data-sortable="true">Publisher</th>
-				  <th data-field="description" data-sortable="true">Description</th>
-				  <th data-field="distributions" data-sortable="false" data-formatter="customFormater">Distributions</th>
+				  <th data-field="publisher" data-visible="false">Publisher</th>
+				  <th data-field="keywords" data-sortable="false" data-visible="false" data-formatter="kwFormater">Keywords</th>
+				  <th data-field="description" data-sortable="true" >Description</th>
+				  <th data-field="distributions" data-sortable="false" data-formatter="typeFormater" data-width="300">Distributions</th>
 				</tr>
 			  </thead>
 			</table>
