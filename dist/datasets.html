@@ -37,6 +37,15 @@ footer{
 
 </style>
 
+<style>
+	 .yasgui .autocompleteWrapper, .yasgui .controlbar {
+		display: none !important;
+	  }
+</style>
+
+<link href="https://unpkg.com/@triply/yasgui/build/yasgui.min.css" rel="stylesheet" type="text/css" />
+<script src="https://unpkg.com/@triply/yasgui/build/yasgui.min.js"></script>
+
 
 
     <meta name="description" content="Madrid Green Data Spaces">
@@ -77,7 +86,7 @@ footer{
         <div class="top-bar-right">
           <ul class="menu vertical large-horizontal">
             <li><a href="/" class="button link lowercase u-margin--right i18n" data-i18n="template.menu.agenda">Home</a></li>
-            <li><a href="visual.html" class="button link lowercase u-margin--right i18n" data-i18n="template.menu.hackathon">Visualizer</a></li>
+            <li><a href="/dashboard/" class="button link lowercase u-margin--right i18n" data-i18n="template.menu.hackathon">Dashboard</a></li>
             <li><a href="datasets.html" class="button link lowercase u-margin--right i18n" data-i18n="template.menu.faq">Datasets</a></li>
             <li><a href="about.html" class="button link lowercase u-margin--right i18n" data-i18n="template.menu.2020">About</a></li>
           </ul>
@@ -170,6 +179,17 @@ footer{
 			  </thead>
 			</table>
 	</div>
+
+
+	<div class="students_wrapper">
+		<div id="yasgui"></div>
+	</div>
+	<script>
+		const yasgui = new Yasgui(document.getElementById("yasgui"), {
+	  requestConfig: { endpoint: "http://mgds.oeg.fi.upm.es/sparql" },
+	  copyEndpointOnNewTab: false  
+	});
+	</script>
 
 
     

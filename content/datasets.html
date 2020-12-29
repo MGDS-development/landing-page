@@ -26,6 +26,15 @@ footer{
 
 </style>
 
+<style>
+	 .yasgui .autocompleteWrapper, .yasgui .controlbar {
+		display: none !important;
+	  }
+</style>
+
+<link href="https://unpkg.com/@triply/yasgui/build/yasgui.min.css" rel="stylesheet" type="text/css" />
+<script src="https://unpkg.com/@triply/yasgui/build/yasgui.min.js"></script>
+
 <!-- /build:extrahead -->
 
 <!-- build:content --> 
@@ -112,5 +121,16 @@ footer{
 			  </thead>
 			</table>
 	</div>
+
+
+	<div class="students_wrapper">
+		<div id="yasgui"></div>
+	</div>
+	<script>
+		const yasgui = new Yasgui(document.getElementById("yasgui"), {
+	  requestConfig: { endpoint: "http://mgds.oeg.fi.upm.es/sparql" },
+	  copyEndpointOnNewTab: false  
+	});
+	</script>
 
 <!-- /build:content -->
