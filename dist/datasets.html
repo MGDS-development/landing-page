@@ -210,9 +210,13 @@ footer{
 		const q3 = '## List distributions of a given dataset\n' +
 		'PREFIX dcat: <http://www.w3.org/ns/dcat#>\n' +
 		'PREFIX dct: <http://purl.org/dc/terms/>\n' +
-		'SELECT ?name ?uri WHERE {\n' +
+		'SELECT ?accessURL ?mediaType WHERE {\n' +
+		'  VALUES ?uri { <https://datos.madrid.es/egob/catalogo/200284-0-puntos-limpios-fijos> }\n' +
 		'  ?uri a dcat:Dataset .\n' +
-		'  ?uri dct:title ?name\n' +
+		'  ?uri dcat:distribution ?distribution .\n' +
+		'  ?distribution a dcat:Distribution .\n' +
+		'  ?distribution dcat:accessURL ?accessURL .\n' +
+		'  ?distribution dcat:mediaType ?mediaType .\n' +
 		'}\n' 
 		
 	  const yasgui = new Yasgui(document.getElementById("yasgui"), {
