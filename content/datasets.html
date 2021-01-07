@@ -127,10 +127,61 @@ footer{
 		<div id="yasgui"></div>
 	</div>
 	<script>
-		const yasgui = new Yasgui(document.getElementById("yasgui"), {
-	  requestConfig: { endpoint: "https://mgds.oeg.fi.upm.es/sparql/endpoint/" },
-	  copyEndpointOnNewTab: false  
-	});
+		const q1 = 'PREFIX dcat: <http://www.w3.org/ns/dcat#>\n' +
+		'PREFIX dct: <http://purl.org/dc/terms/>\n' +
+		'SELECT ?name ?uri WHERE {\n' +
+		'  ?uri a dcat:Dataset .\n' +
+		'  ?uri dct:title ?name\n' +
+		'}\n' 
+		
+		const q2 = 'PREFIX dcat: <http://www.w3.org/ns/dcat#>\n' +
+		'PREFIX dct: <http://purl.org/dc/terms/>\n' +
+		'PREFIX mgds: <https://mgds.oeg.fi.upm.es/>\n' +
+
+		'SELECT ?name ?uri WHERE {\n' +
+  
+		'  ?uri a dcat:Dataset .\n' +
+		'  ?uri dct:title ?name .\n' +
+		'  ?uri dct:description ?description\n' +
+		'  FILTER regex(?description , "parque", "i")\n' +
+  
+		'}\n'
+		
+		const q3 = 'PREFIX dcat: <http://www.w3.org/ns/dcat#>\n' +
+		'PREFIX dct: <http://purl.org/dc/terms/>\n' +
+		'SELECT ?name ?uri WHERE {\n' +
+		'  ?uri a dcat:Dataset .\n' +
+		'  ?uri dct:title ?name\n' +
+		'}\n' 
+		
+	  const yasgui = new Yasgui(document.getElementById("yasgui"), {
+		requestConfig: { endpoint: "https://mgds.oeg.fi.upm.es/sparql/endpoint/", method: 'GET' },
+		copyEndpointOnNewTab: false  
+	  });
+	  
+	  t1 = yasgui.addTab(
+		  true, 
+		  { 
+			  name: "Example 1", 
+		  }
+		);
+	  t1.setQuery(q1);
+	  
+	  t2 = yasgui.addTab(
+		  
+		  { 
+			  name: "Example 2", 
+		  }
+		);
+	  t2.setQuery(q2);
+	  
+	  t3 = yasgui.addTab(
+		  { 
+			  name: "Example 3", 
+		  }
+		);
+	  t3.setQuery(q3);
+	  
 	</script>
 
 <!-- /build:content -->
