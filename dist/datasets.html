@@ -37,15 +37,6 @@ footer{
 
 </style>
 
-<style>
-	 .yasgui .autocompleteWrapper, .yasgui .controlbar {
-		display: none !important;
-	  }
-</style>
-
-<link href="https://unpkg.com/@triply/yasgui/build/yasgui.min.css" rel="stylesheet" type="text/css" />
-<script src="https://unpkg.com/@triply/yasgui/build/yasgui.min.js"></script>
-
 
 
     <meta name="description" content="Madrid Green Data Spaces">
@@ -89,7 +80,7 @@ footer{
             <li><a href="gallery.html" class="button link lowercase u-margin--right i18n" data-i18n="template.menu.faq">Gallery</a></li>
             <li><a href="dashboard.html" class="button link lowercase u-margin--right i18n" data-i18n="template.menu.hackathon">Dashboard</a></li>
             <li><a href="datasets.html" class="button link lowercase u-margin--right i18n" data-i18n="template.menu.faq">Datasets</a></li>
-            <li><a href="datasets.html" class="button link lowercase u-margin--right i18n" data-i18n="template.menu.faq">Endpoint</a></li>
+            <li><a href="endpoint.html" class="button link lowercase u-margin--right i18n" data-i18n="template.menu.faq">Endpoint</a></li>
             <li><a href="who.html" class="button link lowercase u-margin--right i18n" data-i18n="template.menu.2020">Who we are</a></li>
             <li><a href="about.html" class="button link lowercase u-margin--right i18n" data-i18n="template.menu.2020">About</a></li>
           </ul>
@@ -184,81 +175,6 @@ footer{
 	</div>
 
 
-	<div class="students_wrapper">
-		<div id="yasgui"></div>
-	</div>
-	<script>
-		const q1 = '## List all datasets\n' +
-		'PREFIX dcat: <http://www.w3.org/ns/dcat#>\n' +
-		'PREFIX dct: <http://purl.org/dc/terms/>\n' +
-		'SELECT ?name ?uri WHERE {\n' +
-		'  ?uri a dcat:Dataset .\n' +
-		'  ?uri dct:title ?name\n' +
-		'}\n' 
-		
-		const q2 = '## Find datasets related to parks\n' +
-		'PREFIX dcat: <http://www.w3.org/ns/dcat#>\n' +
-		'PREFIX dct: <http://purl.org/dc/terms/>\n' +
-		'PREFIX mgds: <https://mgds.oeg.fi.upm.es/>\n' +
-
-		'SELECT ?name ?uri WHERE {\n' +
-  
-		'  ?uri a dcat:Dataset .\n' +
-		'  ?uri dct:title ?name .\n' +
-		'  ?uri dct:description ?description\n' +
-		'  FILTER regex(?description , "parque", "i")\n' +
-  
-		'}\n'
-		
-		const q3 = '## List distributions of a given dataset\n' +
-		'PREFIX dcat: <http://www.w3.org/ns/dcat#>\n' +
-		'PREFIX dct: <http://purl.org/dc/terms/>\n' +
-		'SELECT ?accessURL ?mediaType WHERE {\n' +
-		'  VALUES ?uri { <https://datos.madrid.es/egob/catalogo/200284-0-puntos-limpios-fijos> }\n' +
-		'  ?uri a dcat:Dataset .\n' +
-		'  ?uri dcat:distribution ?distribution .\n' +
-		'  ?distribution a dcat:Distribution .\n' +
-		'  ?distribution dcat:accessURL ?accessURL .\n' +
-		'  ?distribution dcat:mediaType ?mediaType .\n' +
-		'}\n' 
-		
-	  const yasgui = new Yasgui(document.getElementById("yasgui"), {
-		requestConfig: { endpoint: "https://mgds.oeg.fi.upm.es/sparql/endpoint/", method: 'GET' },
-		copyEndpointOnNewTab: false  
-	  });
-	  
-	  // Remove old tabs
-	  
-	  while(yasgui.getTab() != undefined){
-		  yasgui.getTab().close();
-	  }
-	  
-	  
-	  t1 = yasgui.addTab(
-		  true, 
-		  { 
-			  name: "Example 1", 
-		  }
-		);
-	  t1.setQuery(q1);
-	  
-	  t2 = yasgui.addTab(
-		  true,
-		  { 
-			  name: "Example 2", 
-		  }
-		);
-	  t2.setQuery(q2);
-	  
-	  t3 = yasgui.addTab(
-			true,
-		  { 
-			  name: "Example 3", 
-		  }
-		);
-	  t3.setQuery(q3);
-	  
-	</script>
 
 
     
@@ -283,7 +199,7 @@ footer{
 			</div>
 			
 			<div class="small-6 medium-2 large-2 cell text-center">
-				<img class="logo2" src="img/logo/orgs/logo_ft.png" alt="ETSIINF">
+				<img class="logo2" src="img/logo/orgs/logo_ft.png" alt="ETSITGC">
 			</div>
 			
 			<div class="small-6 medium-2 large-2 cell text-center">

@@ -23,56 +23,16 @@ footer{
 	
 }
 
-</style>
+.dashboard_frame{
 
-<script>
-
-function bg(){
-	
-	window.setInterval(function(){
-		
-		document.getElementById("bg2").style.opacity = 0
-		
-		window.setTimeout(function(){
-		
-			n = Math.ceil(Math.random()*72);
-			
-			if(n < 10){
-				
-				n = "0"+n.toString();
-				
-			}
-			
-			console.log(n);
-			
-			document.getElementById("bg2").style.backgroundImage = "linear-gradient(rgba(255,255,255,1), rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0), rgba(255,255,255, 1)), url('./../img/head/"+n+".jpg')";
-			
-			document.getElementById("bg2").style.opacity = 1;
-			
-		}, 2000);
-		
-		window.setTimeout(function(){
-		
-			n = Math.ceil(Math.random()*72);
-			
-			if(n < 10){
-				
-				n = "0"+n.toString();
-				
-			}
-			
-			console.log(n);
-			
-			document.getElementById("bg1").style.backgroundImage = "linear-gradient(rgba(255,255,255,1), rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0), rgba(255,255,255, 1)), url('./../img/head/"+n+".jpg')";
-		
-		}, 3500);
-		
-	}, 5000);
+	width: 100%;
+	min-height: 800px;
+	border: none;
+	background-color: white;
 	
 }
 
-
-</script>
+</style>
 
 
 
@@ -132,13 +92,9 @@ function bg(){
     
     <!-- links -->
 
-    <section class="hero-intro clearfix" style="min-height: 750px !important;">
-		<div id="bg1" class="banner-image1"></div>
-		<div id="bg2" class="banner-image2"></div> 
-        <div class="banner-text">
-			<h3 style="color: black; text-shadow: 0px 0px 1px rgb(255, 255, 255), 0px 0px 5px rgb(155, 155, 155);">MADRID GREEN DATA SPACES</h3>
-		</div>
-    </section>
+    <div class="students_wrapper">
+			<iframe class="dashboard_frame" onload="this.height = this.contentWindow.document.body.scrollHeight + 'px'" src="https://www.youtube-nocookie.com/embed/uaaFqRV-NKU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	</div>
 
 
     
