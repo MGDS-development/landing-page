@@ -32,6 +32,14 @@ footer{
 	
 }
 
+.fs_but {
+	
+	float: right;
+	font-size: 2em;
+	margin: 10px;
+
+}
+
 </style>
 
 
@@ -93,8 +101,9 @@ footer{
     <!-- links -->
 
     <div class="students_wrapper">
-		<a href="#" onclick='document.getElementsByClassName("dashboard_frame").item(0).requestFullscreen();'>Full screen</a>
-			<iframe src="/dashboard/" class="dashboard_frame" onload="this.height = this.contentWindow.document.body.scrollHeight + 'px'";></iframe>
+		<a href="#" onclick='document.getElementsByClassName("dashboard_frame").item(0).requestFullscreen();' alt="Full screen" class="fs_but"><i class="fas fa-expand-arrows-alt"></i></a>
+		<iframe src="/dashboard/" class="dashboard_frame" onload="this.height = this.contentWindow.document.body.scrollHeight + 'px'";></iframe>
+		<p>A continuously evolving beta version of this dashboard is available <a href="http://vps204.cesvima.upm.es:8080/">here</a>.</p>
 	</div>
 
 
